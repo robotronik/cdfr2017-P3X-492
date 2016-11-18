@@ -1,0 +1,3 @@
+[submodule "meca/mecanique"]
+	path = meca/mecanique
+	url = https://github.com/robotronik/mecanique
