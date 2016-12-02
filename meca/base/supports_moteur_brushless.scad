@@ -1,17 +1,17 @@
 use <../../../mecanique/Modèles/moteurs_brushless.scad>
 $fn = 100;
 
-clearence = 0;
+clearence = 0.3;
 diam_gear = 45;
 
-module support_moteur_base(L,l,H){
+module support_moteur_base(L,l,H,diam_vis){
      difference(){
 	  cube([L,l,H]);
 	  translate([-0.1,l/2,H])rotate([0,90,0])cylinder(d=diam_gear+clearence,h=L+0.2);
-	  translate([L/4,(l/2-(diam_gear+clearence)/2)/2,H-10])cylinder(d=3,h=10.1);
-	  translate([L-L/4,(l/2-(diam_gear+clearence)/2)/2,H-10])cylinder(d=3,h=10.1);
-	  translate([L/4,l-(l/2-(diam_gear+clearence)/2)/2,H-10])cylinder(d=3,h=10.1);
-	  translate([L-L/4,l-(l/2-(diam_gear+clearence)/2)/2,H-10])cylinder(d=3,h=10.1);
+	  translate([L/4,(l/2-(diam_gear+clearence)/2)/2,H-10])cylinder(d=diam_vis,h=10.1);
+	  translate([L-L/4,(l/2-(diam_gear+clearence)/2)/2,H-10])cylinder(d=diam_vis,h=10.1);
+	  translate([L/4,l-(l/2-(diam_gear+clearence)/2)/2,H-10])cylinder(d=diam_vis,h=10.1);
+	  translate([L-L/4,l-(l/2-(diam_gear+clearence)/2)/2,H-10])cylinder(d=diam_vis,h=10.1);
      }
      difference(){
 	  translate([-2,28/2,0])cube([2,l-28,H-12]);
@@ -27,20 +27,20 @@ module support_moteur_base(L,l,H){
 
 }
 
-module support_moteur_haut(L,l,H){
+module support_moteur_haut(L,l,H,diam_vis){
      difference(){
 	  cube([L,l,H-5]);
 	  translate([-0.1,l/2,H])rotate([0,90,0])cylinder(d=diam_gear+clearence,h=L+0.2);
-	  translate([L/4,(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=3,h=25.1);
-	  translate([L-L/4,(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=3,h=25.1);
-	  translate([L/4,l-(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=3,h=25.1);
-	  translate([L-L/4,l-(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=3,h=25.1);
+	  translate([L/4,(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=diam_vis,h=25.1);
+	  translate([L-L/4,(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=diam_vis,h=25.1);
+	  translate([L/4,l-(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=diam_vis,h=25.1);
+	  translate([L-L/4,l-(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=diam_vis,h=25.1);
      }
 }
 
 module support_moteur_brushless(){
-     support_moteur_base(20,65,diam_gear/2+5);
-     translate([0,0,56])mirror([0,0,1])support_moteur_haut(20,65,diam_gear/2+5);
+     support_moteur_base(20,65,diam_gear/2+5,3.4+clearence);
+     //translate([0,0,56])mirror([0,0,1])support_moteur_haut(20,65,diam_gear/2+5,4+clearence);
 }
 
 diametre_tete=7;
@@ -79,4 +79,5 @@ module equerre_fix_moteur(){
 //support_moteur_haut(20,65,diam_gear/2+5);
 
 support_moteur_brushless();
+
 
