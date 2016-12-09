@@ -8,10 +8,10 @@ module support_moteur_base(L,l,H,diam_vis){
      difference(){
 	  cube([L,l,H]);
 	  translate([-0.1,l/2,H])rotate([0,90,0])cylinder(d=diam_gear+clearence,h=L+0.2);
-	  translate([L/4,(l/2-(diam_gear+clearence)/2)/2,H-10])cylinder(d=diam_vis,h=10.1);
-	  translate([L-L/4,(l/2-(diam_gear+clearence)/2)/2,H-10])cylinder(d=diam_vis,h=10.1);
-	  translate([L/4,l-(l/2-(diam_gear+clearence)/2)/2,H-10])cylinder(d=diam_vis,h=10.1);
-	  translate([L-L/4,l-(l/2-(diam_gear+clearence)/2)/2,H-10])cylinder(d=diam_vis,h=10.1);
+	  translate([L/4,(l/2-(diam_gear+clearence)/2)/2,H-20])#cylinder(d=diam_vis,h=20.1);
+	  translate([L-L/4,(l/2-(diam_gear+clearence)/2)/2,H-20])cylinder(d=diam_vis,h=20.1);
+	  translate([L/4,l-(l/2-(diam_gear+clearence)/2)/2,H-20])cylinder(d=diam_vis,h=20.1);
+	  translate([L-L/4,l-(l/2-(diam_gear+clearence)/2)/2,H-20])cylinder(d=diam_vis,h=20.1);
      }
      difference(){
 	  translate([-2,28/2,0])cube([2,l-28,H-12]);
