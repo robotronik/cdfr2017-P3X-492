@@ -1,16 +1,23 @@
 use <../other/elements_jeu.scad>
+use <../../../mecanique/Modèles/xl320.scad>
+use <end_rampe.scad>
 
 $fn=100;
 
 e1=3;
 e2=e1+2;
 L1=160;
+L2=50;
 H1=85;
 H2=32;
+l1=6;
+angle=0;
 diam_vis_fix=3.3;
+diam_rail_Ti=3.3;
 
 CONST_1=10;
 ecart=34;
+ecart_rampe=20;
 translation=ecart+CONST_1;
 
 module rampe_test(L){
@@ -36,6 +43,11 @@ module rampe(){
      translate([-translation,0,0])mirror([1,0,0])rampe_1();
 }
 
+module rampe_fin(){
+     rail_final_1();
+     translate([-translation,0,0])mirror([1,0,0])rail_final_1();
+     }
+
 module triangle(L,H){
      polygon(points=[[0,0],[H,0],[0,L]],paths=[[0,1,2]]);
 }
@@ -52,6 +64,7 @@ module rail_Ti(){
 	  cube([e1,L1,H1]);
 	  translate([e1+0.1,L1+0.1,H1+0.1])rotate([0,90,180])linear_extrude(height=e1+0.2)triangle(L1+0.1,(H1-50)+0.1);
 	  translate([-0.1,-0.1,H1-1])cube([e1+0.2,25.1,5.1]);
+	  translate([-0.1,L1-10,H1-30-15])rotate([0,90,0])cylinder(d=diam_rail_Ti,h=e1+0.2);
      }
      for(i=[0:2]){
 	  translate([0,75*i,0])fixation_rail();
@@ -67,6 +80,23 @@ module rail_roche(){
      }
 }
 
+module rail_final_1(){
+     difference(){
+	  union(){
+	  translate([0,ecart_rampe+10,0])cube([l1,L2,l1]);
+	  translate([8-2-2,-5,-5])cube([2,2*ecart_rampe+L2-5,8-2]);
+	  translate([-3,-0,-2])rotate([0,90,0])cylinder(d=3,h=e1+4);
+	  translate([e1,-0,-2])rotate([0,90,0])cylinder(d=3+2,h=e1-1.5);
+	  }
+	  }
+     
+     }
+
+module rail_final_V2(){
+     end_rampe(63);
+     }
+     
+module canon(){
 // --> rendu     
      translate([-e1,0,0])rampe();
        translate([-60/2+5,0,104])minerais_titane();
@@ -74,7 +104,16 @@ module rail_roche(){
 // --> fin de la rampe
        translate([-60/2+5,150,74])minerais_titane();
        translate([-(20+5),150,20])roche_lunaire();
+      // translate([-e1,L1-10,50-8])rotate([angle,0,0])#rampe_fin();
+       //translate([2,L1+46,15])
+       translate([6,238,15])rotate([-0,0,180])rail_final_V2();
+        
 
+}
+
+
+
+canon();
 // --> sol
 
 //translate([-100,0,-1])cube([100,200,1]);
