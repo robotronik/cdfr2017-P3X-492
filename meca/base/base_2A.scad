@@ -1,9 +1,14 @@
 use <supports_moteur_brushless.scad>
 use <../../../mecanique/Modèles/moteurs_brushless.scad>
 use <../other/elements_jeu.scad>
+use <../titanium-ore-smg/smg_canon.scad>
 
 use <../../../mecanique/Modèles/new_support_codeur.scad>
-use <../../../robotronik/mecanique/Modèles/roue_motrice.scad>
+use <../../../mecanique/Modèles/roue_motrice.scad>
+use <../../../mecanique/Modèles/xl320.scad>
+
+color("grey")translate([85,200,38])rotate([0,0,-90])import ("../module-gober/module-gober_1.stl");
+color("grey")translate([225,200,38])rotate([0,0,-90])import ("../module-gober/module-gober_1.stl");
 
 $fn = 100;
 
@@ -32,16 +37,19 @@ module power_train(){
 module stockage_capacite(){
 
      for(i=[0:2]){
-	  translate([350/2,(63+2)*i+90,0])module_lunaire();
+	  translate([330/2,(63+2)*i+90+10,-12])module_lunaire();
      }
 }
 
-base_robot_2A(350,250,3);
+base_robot_2A(330,260,3);
 power_train();
-translate([350,0,0])mirror([1,0,0])power_train();
+translate([330,0,0])mirror([1,0,0])power_train();
 
 stockage_capacite();
-translate([60,40,3])minerais_titane();
+translate([270,35,73])minerais_titane();
 //#translate([50,105,-12])cube([20,20,1]);
+
+translate([40,10,3])rotate([0,0,-90])canon();
+//translate([260,59,7])mirror([0,0,0])rotate([0,0,-90])xl320();
 
      

@@ -1,4 +1,6 @@
 use <../../../mecanique/Modèles/moteurs_brushless.scad>
+
+
 $fn = 100;
 
 clearence = 0.3;
@@ -40,7 +42,7 @@ module support_moteur_haut(L,l,H,diam_vis){
 
 module support_moteur_brushless(){
      support_moteur_base(20,65,diam_gear/2+5,3.4+clearence);
-     //translate([0,0,56])mirror([0,0,1])support_moteur_haut(20,65,diam_gear/2+5,4+clearence);
+     translate([0,0,56])mirror([0,0,1])support_moteur_haut(20,65,diam_gear/2+5,4+clearence);
 }
 
 diametre_tete=7;
@@ -78,6 +80,6 @@ module equerre_fix_moteur(){
 //translate([0,0,56])mirror([0,0,1])support_moteur_haut(20,65,diam_gear/2+5);
 //support_moteur_haut(20,65,diam_gear/2+5);
 
-support_moteur_brushless();
+//support_moteur_brushless();
 
 
