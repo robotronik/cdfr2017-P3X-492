@@ -42,6 +42,7 @@ fix_2_xl320(l);
 cube([5, l, 5]);
 translate([5, 0, 0]) cube([5, l, 2]);
 translate([0, l-20, 5]) cube([5, 20, 20]);
+translate([0,0,-2])cube([5,l,5]);
 
 difference(){
 
@@ -93,6 +94,7 @@ module rail(l){
 cube([5, l, 5]);
 translate([5, 0, 0]) cube([5, l, 2]);
 translate([0, l-20, 5]) cube([5, 20, 20]);
+translate([0,0,-2])cube([5,l,5]);
 
 difference(){
 

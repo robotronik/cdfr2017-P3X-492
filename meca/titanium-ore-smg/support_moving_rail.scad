@@ -2,7 +2,7 @@ use <module-gober-4.scad>
 $fn=100;
 
 diam_ext_roulement=16.5;
-diam_axe_roulement=5;
+diam_axe_roulement=6.1;
 longueur_axe=13; 
 hauteur_fix=20;
 

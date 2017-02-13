@@ -1,6 +1,7 @@
 use <../other/elements_jeu.scad>
 use <../../../mecanique/Modèles/xl320.scad>
 use <end_rampe.scad>
+use <support_launcher.scad>
 
 $fn=100;
 
@@ -65,11 +66,14 @@ module rail_Ti(){
 	  translate([e1+0.1,L1+0.1,H1+0.1])rotate([0,90,180])linear_extrude(height=e1+0.2)triangle(L1+0.1,(H1-50)+0.1);
 	  translate([-0.1,-0.1,H1-1])cube([e1+0.2,25.1,5.1]);
 	  translate([-0.1,L1-10,H1-30-15])rotate([0,90,0])cylinder(d=diam_rail_Ti,h=e1+0.2);
+	  translate([-0.1,L1-30,H1-30.1-10.5])rotate([0,90,0])cylinder(d=diam_rail_Ti,h=e1+0.2);
+	  translate([0,L1-35,H1-30-17.5])translate([-0.1,0,19.9])rotate([-12.35,0,0])cube([3.2,37,0.3]);
      }
      for(i=[0:2]){
 	  translate([0,75*i,0])fixation_rail();
      }
      translate([-2,10,0])rotate([0,0,-180])fixation_rail();
+     translate([3,L1-35,H1-30-17.5])lamelle(150);
 }
 
 module rail_roche(){
@@ -95,6 +99,21 @@ module rail_final_1(){
 module rail_final_V2(){
      end_rampe(63);
      }
+
+module lamelle(l){
+
+     // fixation
+     difference(){
+     translate([0,0,0])cube([1,30,20]);
+     translate([e1-1,L1-125,H1-37.37])rotate([0,90,180])linear_extrude(height=e1+0.2)triangle(L1+0.1,(H1-50)+0.1);
+     }
+     translate([0,5,6.9])rotate([0,-90,0])cylinder(d=diam_rail_Ti,h=e1+0.2+5);
+     translate([0,25,6.9-4.4])rotate([0,-90,0])cylinder(d=diam_rail_Ti,h=e1+0.2+5);
+     // lamelle
+
+     translate([-3,0,19.9])rotate([-12.35,0,0])cube([4,l,0.3]);
+     
+     }
      
 module canon(){
 // --> rendu     
@@ -102,14 +121,17 @@ module canon(){
        translate([-60/2+5,0,104])minerais_titane();
        translate([-(20+5),0,43])roche_lunaire();
 // --> fin de la rampe
-       translate([-60/2+5,150,74])minerais_titane();
+       translate([-60/2+5,170,69])minerais_titane();
        translate([-(20+5),150,20])roche_lunaire();
       // translate([-e1,L1-10,50-8])rotate([angle,0,0])#rampe_fin();
        //translate([2,L1+46,15])
-       translate([6,238,15])rotate([-0,0,180])rail_final_V2();
+       translate([6,186,15])rotate([-0,0,180])rail_final_V2();
+       translate([-58,163,0])rotate([0,0,90])support_launcher();
+       //translate([0,L1-35,H1-30-17.5])lamelle(150);
         
 
 }
+
 
 
 
