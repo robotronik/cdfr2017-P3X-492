@@ -125,7 +125,7 @@ module canon(){
        translate([-(20+5),150,20])roche_lunaire();
       // translate([-e1,L1-10,50-8])rotate([angle,0,0])#rampe_fin();
        //translate([2,L1+46,15])
-       translate([6,186,15])rotate([-0,0,180])rail_final_V2();
+       translate([6,246,15])rotate([-0,0,180])rail_final_V2();
        translate([-58,163,0])rotate([0,0,90])support_launcher();
        //translate([0,L1-35,H1-30-17.5])lamelle(150);
         
