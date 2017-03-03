@@ -10,9 +10,9 @@ module support_moteur_base(L,l,H,diam_vis){
      difference(){
 	  cube([L,l,H]);
 	  translate([-0.1,l/2,H])rotate([0,90,0])cylinder(d=diam_gear+clearence,h=L+0.2);
-	  translate([L/4,(l/2-(diam_gear+clearence)/2)/2,H-20])#cylinder(d=diam_vis,h=20.1);
+	  translate([L/4,(l/2-(diam_gear+clearence)/2)/2,H-30])cylinder(d=diam_vis+0.5,h=30.1);
 	  translate([L-L/4,(l/2-(diam_gear+clearence)/2)/2,H-20])cylinder(d=diam_vis,h=20.1);
-	  translate([L/4,l-(l/2-(diam_gear+clearence)/2)/2,H-20])cylinder(d=diam_vis,h=20.1);
+	  translate([L/4,l-(l/2-(diam_gear+clearence)/2)/2,H-30])cylinder(d=diam_vis+0.5,h=30.1);
 	  translate([L-L/4,l-(l/2-(diam_gear+clearence)/2)/2,H-20])cylinder(d=diam_vis,h=20.1);
      }
      difference(){
@@ -21,8 +21,8 @@ module support_moteur_base(L,l,H,diam_vis){
 	  translate([-2.1,l/2-10,11.2])rotate([0,90,0])cylinder(d=4.7,h=2.2);
 	  translate([-2.1,l/2+10,11.2])rotate([0,90,0])cylinder(d=4.7,h=2.2);
      }
-     translate([14+(L-14)/2,2,0])rotate([0,0,-180])equerre_fix_moteur();
-     translate([(L-14)/2,l-2,0])rotate([0,0,0])equerre_fix_moteur();
+     //translate([14+(L-14)/2,2,0])rotate([0,0,-180])equerre_fix_moteur();
+     //translate([(L-14)/2,l-2,0])rotate([0,0,0])equerre_fix_moteur();
      translate([L-2,14,0])rotate([0,0,-90])equerre_fix_moteur();
      translate([L-2,l,0])rotate([0,0,-90])equerre_fix_moteur();
      
@@ -33,10 +33,13 @@ module support_moteur_haut(L,l,H,diam_vis){
      difference(){
 	  cube([L,l,H-5]);
 	  translate([-0.1,l/2,H])rotate([0,90,0])cylinder(d=diam_gear+clearence,h=L+0.2);
-	  translate([L/4,(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=diam_vis,h=25.1);
+	  translate([L/4,(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=diam_vis+0.5,h=25.1);
 	  translate([L-L/4,(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=diam_vis,h=25.1);
-	  translate([L/4,l-(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=diam_vis,h=25.1);
+	  translate([L/4,l-(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=diam_vis+0.5,h=25.1);
 	  translate([L-L/4,l-(l/2-(diam_gear+clearence)/2)/2,-0.1])cylinder(d=diam_vis,h=25.1);
+	  // reduction longueur vis
+	  translate([-0.1,-0.1,-0.1])cube([L/2+1,10.1,15.1]);
+	  translate([-0.1,l-10,-0.1])cube([L/2+1,10.1,15.1]);
      }
 }
 
@@ -76,8 +79,8 @@ module equerre_fix_moteur(){
 
 //translate([0,65/2,45/2+5])moteur_Brushless_EC_45_flat_30W_geared();
 
-//support_moteur_base(20,65,diam_gear/2+5);
-//translate([0,0,56])mirror([0,0,1])support_moteur_haut(20,65,diam_gear/2+5);
+support_moteur_base(20,65,diam_gear/2+5,4);
+translate([0,0,56])mirror([0,0,1])support_moteur_haut(20,65,diam_gear/2+5,4);
 //support_moteur_haut(20,65,diam_gear/2+5);
 
 //support_moteur_brushless();
